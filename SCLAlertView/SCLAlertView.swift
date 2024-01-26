@@ -810,16 +810,18 @@ open class SCLAlertView: UIViewController {
             indicator.color = .defaultBackgroundColor
             indicator.startAnimating()
             circleIconView = indicator
-        }
-        else {
+        } else {
             isUsingDefaultIconImage = circleIconImage == nil
             let iconImage = circleIconImage ?? getIconImage()
             if let iconTintColor = iconTintColor {
                 circleIconView = UIImageView(image: iconImage?.withRenderingMode(.alwaysTemplate))
                 circleIconView?.tintColor = iconTintColor
-            }
-            else {
+                circleIconView?.contentMode = .scaleAspectFit
+                circleIconView?.clipsToBounds = true
+            } else {
                 circleIconView = UIImageView(image: iconImage)
+                circleIconView?.contentMode = .scaleAspectFit
+                circleIconView?.clipsToBounds = true
             }
         }
         circleView.addSubview(circleIconView!)
